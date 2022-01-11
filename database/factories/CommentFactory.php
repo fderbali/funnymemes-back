@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Meme;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -14,7 +16,13 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'body' => $this->faker->text,
+            'meme_id' => function(){
+                return Meme::all()->random();
+            },
+            'user_id' => function(){
+                return User::all()->random();
+            }
         ];
     }
 }

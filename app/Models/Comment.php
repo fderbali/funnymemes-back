@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    public function meme(){
+        return $this->belongsTo(Meme::class);
+    }
+
 }

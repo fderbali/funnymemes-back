@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     use HasFactory;
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function meme(){
+        return $this->belongsTo(Meme::class);
+    }
 }

@@ -15,6 +15,8 @@ class CreateMemesTable extends Migration
     {
         Schema::create('memes', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LikeController extends Controller
 {

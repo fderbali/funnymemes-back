@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use App\Models\Meme;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MemeController extends Controller
 {
@@ -14,7 +15,7 @@ class MemeController extends Controller
      */
     public function index()
     {
-        //
+        return Meme::paginate(10);
     }
 
     /**
@@ -60,5 +61,9 @@ class MemeController extends Controller
     public function destroy(Meme $meme)
     {
         //
+    }
+
+    public function likes(Meme $meme){
+        return $meme->likes;
     }
 }

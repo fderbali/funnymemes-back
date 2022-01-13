@@ -8,6 +8,17 @@ use App\Http\Controllers\Controller;
 
 class LikeController extends Controller
 {
+
+    /**
+     * Create a new Controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -8,6 +8,17 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+
+    /**
+     * Create a new Controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

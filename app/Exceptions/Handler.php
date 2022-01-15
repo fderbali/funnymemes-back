@@ -2,8 +2,12 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Http\Response;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -37,5 +41,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(function (TokenExpiredException $e) {
+            return response(['error' => 'Session expiredd'], Response::HTTP_BAD_REQUEST);
+        });
+
+        $this->renderable(function (JWTException $e) {
+            return response(['error' => 'Invalid token'], Response::HTTP_BAD_REQUEST);
+        });
+
+        $this->renderable(function (NotFoundHttpException $e) {
+            return response(['error' => 'Not found'], Response::HTTP_NOT_FOUND);
+        });
+
     }
 }

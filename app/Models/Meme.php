@@ -12,6 +12,8 @@ class Meme extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -23,4 +25,5 @@ class Meme extends Model
     public function likes(){
         return $this->hasMany(Like::class);
     }
+
 }

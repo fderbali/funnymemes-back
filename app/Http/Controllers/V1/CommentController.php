@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
 
     /**
-     * Create a new Controller instance.
+     * Create a new CommentController instance.
      *
      * @return void
      */

@@ -7,7 +7,7 @@ use App\Http\Controllers\V1\HomeController;
 
 Route::get('/', HomeController::class);
 
-Route::get('/meme', [MemeController::class, 'index']);
+Route::apiResource('/meme', MemeController::class);
 Route::get('/meme/{meme}/likes', [MemeController::class, 'likes']);
 
 Route::group([

@@ -10,7 +10,7 @@ class LikeController extends Controller
 {
 
     /**
-     * Create a new Controller instance.
+     * Create a new LikeController instance.
      *
      * @return void
      */

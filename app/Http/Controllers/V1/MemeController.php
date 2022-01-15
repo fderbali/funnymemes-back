@@ -37,7 +37,11 @@ class MemeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $meme = new Meme();
+        $meme->url = $request->url;
+        $meme->user_id = auth()->user()->id;
+        $meme->save();
+        return $meme;
     }
 
     /**
@@ -48,7 +52,7 @@ class MemeController extends Controller
      */
     public function show(Meme $meme)
     {
-        //
+        return $meme;
     }
 
     /**
@@ -60,7 +64,8 @@ class MemeController extends Controller
      */
     public function update(Request $request, Meme $meme)
     {
-        //
+        $meme->update($request->all());
+        return $meme;
     }
 
     /**
@@ -71,10 +76,11 @@ class MemeController extends Controller
      */
     public function destroy(Meme $meme)
     {
-        //
+        $meme->delete();
     }
 
     public function likes(Meme $meme){
+
         return $meme->likes;
     }
 }

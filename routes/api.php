@@ -9,6 +9,7 @@ Route::get('/', HomeController::class);
 
 Route::apiResource('/meme', MemeController::class);
 Route::get('/meme/{meme}/likes', [MemeController::class, 'likes']);
+Route::get('/meme/{meme}/comments', [MemeController::class, 'comments']);
 
 Route::group([
     'middleware' => 'api',

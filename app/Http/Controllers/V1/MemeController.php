@@ -16,7 +16,7 @@ class MemeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['index', 'show']]);
+        $this->middleware('JWT', ['except' => ['index', 'show', 'likes', 'comments']]);
     }
 
     /**
@@ -82,5 +82,9 @@ class MemeController extends Controller
     public function likes(Meme $meme){
 
         return $meme->likes;
+    }
+
+    public function comments(Meme $meme){
+        return $meme->comments;
     }
 }

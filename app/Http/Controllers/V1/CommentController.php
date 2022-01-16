@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Models\Meme;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,9 +25,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Meme $meme)
     {
-        //
+        return $meme->comments;
     }
 
     /**
@@ -35,9 +36,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Meme $meme, Request $request)
     {
-        //
+        $comment = new Comment;
+        $comment->meme_id = $meme->id;
+        $comment->body = $request->body;
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+        return $comment;
     }
 
     /**
@@ -46,9 +52,9 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Meme $meme, Comment $comment)
     {
-        //
+        return $comment;
     }
 
     /**
@@ -58,9 +64,10 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Meme $meme, Comment $comment, Request $request)
     {
-        //
+        $comment->update($request->all());
+        return $comment;
     }
 
     /**
@@ -69,8 +76,8 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Meme $meme, Comment $comment)
     {
-        //
+        $comment->delete();
     }
 }

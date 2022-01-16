@@ -84,7 +84,4 @@ class MemeController extends Controller
         return $meme->likes;
     }
 
-    public function comments(Meme $meme){
-        return $meme->comments;
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Like;
 use App\Models\User;
 use App\Models\Comment;
@@ -26,8 +27,7 @@ class Meme extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function getCreatedAtAttribute($value)
-    {
+    public function getCreatedAtAttribute($value){
         return (new Carbon($value))->diffForHumans();
     }
 

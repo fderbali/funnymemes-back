@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Models\Meme;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MemeResource;
 
 class MemeController extends Controller
 {
@@ -26,7 +27,8 @@ class MemeController extends Controller
      */
     public function index()
     {
-        return Meme::paginate(10);
+        return MemeResource::collection(Meme::with('user', 'likes', 'comments')->orderBy('id', 'desc')->paginate(10));
+        //return MemeResource::collection(Meme::orderBy('id', 'desc')->paginate(10));
     }
 
     /**

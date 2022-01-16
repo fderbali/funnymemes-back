@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -69,5 +70,9 @@ class User extends Authenticatable implements JWTSubject
 
     public function memes(){
         return $this->hasMany(Meme::class)->orderBy('id', 'desc');
+    }
+
+    public function getCreatedAtAttribute($value){
+        return (new Carbon($value))->diffForHumans();
     }
 }

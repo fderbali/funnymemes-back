@@ -6,6 +6,8 @@ use App\Models\Meme;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
+use App\Http\Resources\CommentCollection;
 
 class CommentController extends Controller
 {
@@ -27,7 +29,8 @@ class CommentController extends Controller
      */
     public function index(Meme $meme)
     {
-        return $meme->comments;
+        //return CommentResource::collection($meme->comments);
+        return new CommentCollection($meme->comments);
     }
 
     /**
@@ -43,7 +46,7 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->user_id = auth()->user()->id;
         $comment->save();
-        return $comment;
+        return new CommentResource($comment);
     }
 
     /**
@@ -54,7 +57,7 @@ class CommentController extends Controller
      */
     public function show(Meme $meme, Comment $comment)
     {
-        return $comment;
+        return new CommentResource($comment);
     }
 
     /**
@@ -67,7 +70,7 @@ class CommentController extends Controller
     public function update(Meme $meme, Comment $comment, Request $request)
     {
         $comment->update($request->all());
-        return $comment;
+        return new CommentResource($comment);
     }
 
     /**

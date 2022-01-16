@@ -19,11 +19,16 @@ class Meme extends Model
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->orderBy('id','desc');
     }
 
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return (new Carbon($value))->diffForHumans();
     }
 
 }
